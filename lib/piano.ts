@@ -70,7 +70,15 @@ export function playNote(frequency: number, duration: number = 0.5): void {
 // Get random piano key for exercises
 export function getRandomKey(): PianoKey {
   const randomIndex = Math.floor(Math.random() * PIANO_KEYS.length);
-  return PIANO_KEYS[randomIndex];
+  const key = PIANO_KEYS[randomIndex];
+  
+  // Safety check to ensure we always return a valid key
+  if (!key) {
+    // Fallback to the first key if something goes wrong
+    return PIANO_KEYS[0];
+  }
+  
+  return key;
 }
 
 // Get key by name
