@@ -69,13 +69,16 @@ export function playNote(frequency: number, duration: number = 0.5): void {
 
 // Get random piano key for exercises
 export function getRandomKey(): PianoKey {
+  if (PIANO_KEYS.length === 0) {
+    throw new Error('No piano keys available');
+  }
+  
   const randomIndex = Math.floor(Math.random() * PIANO_KEYS.length);
   const key = PIANO_KEYS[randomIndex];
   
-  // Safety check to ensure we always return a valid key
+  // TypeScript-safe check - this should never happen with our fixed array, but satisfies the compiler
   if (!key) {
-    // Fallback to the first key if something goes wrong
-    return PIANO_KEYS[0];
+    return PIANO_KEYS[0]!; // We know index 0 exists since we checked length above
   }
   
   return key;
