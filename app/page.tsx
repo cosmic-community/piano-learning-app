@@ -3,10 +3,11 @@ import { getLessons, getExercises } from '@/lib/cosmic'
 import PianoKeyboard from '@/components/PianoKeyboard'
 import LessonCard from '@/components/LessonCard'
 import ExerciseCard from '@/components/ExerciseCard'
+import type { Lesson, Exercise } from '@/types'
 
 export default async function HomePage() {
-  let lessons;
-  let exercises;
+  let lessons: Lesson[] = [];
+  let exercises: Exercise[] = [];
   
   try {
     lessons = await getLessons();

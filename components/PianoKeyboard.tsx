@@ -12,12 +12,12 @@ export default function PianoKeyboard() {
     playNote(key.frequency, 0.5)
     
     // Visual feedback
-    setPressedKeys(prev => new Set([...prev, key.keyName]))
+    setPressedKeys(prev => new Set([...Array.from(prev), key.keyName]))
     
     // Remove pressed state after animation
     setTimeout(() => {
       setPressedKeys(prev => {
-        const newSet = new Set(prev)
+        const newSet = new Set(Array.from(prev))
         newSet.delete(key.keyName)
         return newSet
       })

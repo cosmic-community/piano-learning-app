@@ -75,7 +75,8 @@ export function getRandomKey(): PianoKey {
 
 // Get key by name
 export function getKeyByName(keyName: string): PianoKey | null {
-  return PIANO_KEYS.find(key => key.keyName === keyName) || null;
+  const foundKey = PIANO_KEYS.find(key => key.keyName === keyName);
+  return foundKey || null;
 }
 
 // Get white keys only
