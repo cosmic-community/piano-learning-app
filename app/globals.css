@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .piano-key {
+    @apply transition-all duration-100 ease-in-out cursor-pointer select-none;
+  }
+  
+  .piano-key:hover {
+    @apply transform scale-105;
+  }
+  
+  .piano-key:active,
+  .piano-key.pressed {
+    @apply transform scale-95;
+  }
+  
+  .white-key {
+    @apply bg-white border-2 border-gray-300 shadow-md hover:shadow-lg;
+    height: 200px;
+    width: 40px;
+  }
+  
+  .black-key {
+    @apply bg-gray-900 shadow-lg hover:shadow-xl;
+    height: 130px;
+    width: 25px;
+    margin-left: -12.5px;
+    margin-right: -12.5px;
+    z-index: 10;
+  }
+  
+  .lesson-card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 hover:border-blue-300;
+  }
+  
+  .exercise-card {
+    @apply bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6;
+  }
+  
+  .progress-bar {
+    @apply bg-gray-200 rounded-full h-3 overflow-hidden;
+  }
+  
+  .progress-fill {
+    @apply bg-gradient-to-r from-blue-500 to-indigo-600 h-full transition-all duration-500 ease-out;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+  }
+  
+  .musical-note {
+    @apply inline-block transform hover:scale-110 transition-transform duration-200;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .piano-shadow {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+  
+  .card-hover {
+    @apply hover:transform hover:-translate-y-1 transition-transform duration-200;
+  }
+}
+
+/* Custom animations */
+@keyframes notePlay {
+  0% {
+    transform: scale(1);
+    background-color: inherit;
+  }
+  50% {
+    transform: scale(0.95);
+    background-color: #fbbf24;
+  }
+  100% {
+    transform: scale(1);
+    background-color: inherit;
+  }
+}
+
+.note-playing {
+  animation: notePlay 0.3s ease-in-out;
+}
+
+/* Responsive piano keys */
+@media (max-width: 768px) {
+  .white-key {
+    height: 150px;
+    width: 30px;
+  }
+  
+  .black-key {
+    height: 100px;
+    width: 20px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .white-key {
+    height: 120px;
+    width: 25px;
+  }
+  
+  .black-key {
+    height: 80px;
+    width: 15px;
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+  }
+}
